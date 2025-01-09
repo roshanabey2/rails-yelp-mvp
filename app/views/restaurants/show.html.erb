@@ -1,0 +1,56 @@
+<%= link_to "Back to restaurants", restaurants_path %>
+<div class="container">
+<div class="row align-items-center border border-light m-2">
+<div class="col-8">
+<h2><%= @restaurant.name %></h2>
+<h4> Address: </h4>
+<%= @restaurant.address%>
+<p> <strong>Number: </strong><%=@restaurant.phone_number%> </p>
+</div>
+
+<div class="col-4 text-right ">
+<div class="row w-100">
+  <%=link_to edit_restaurant_path(@restaurant) do %>
+  <i class="fa-solid fa-pen-to-square"></i>
+  <%end%>
+</div>
+<div class="row w-100">
+  <%= link_to restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-link" do %>
+  <i class="fas fa-trash"></i>
+  <%end%>
+  </div>
+<div class="row w-100">
+<%= link_to new_restaurant_review_path(@restaurant) do %>
+ <i class="fa-regular fa-comment"></i>
+ <%end%>
+  </div>
+</div>
+
+</div>
+
+<div class="row m-2" id="reviews">
+<h2>Reviews</h2>
+<div class="list-group">
+  <% @reviews.each do |review| %>
+      <div class="list-group-item list-group-item-action" %>
+        <div class="col-8">
+           <p> <%="Review:\n#{review.content}"%> </p>
+            <p> <%= "Rating: #{review.rating}"%> </p>
+        </div>
+        <div class="col-4 text-right ">
+          <div class="row w-100">
+              <%=link_to edit_restaurant_review_path(@restaurant, review) do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+              <%end%>
+          </div>
+          <div class="row w-100">
+            <%= link_to restaurant_review_path(@restaurant, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-link" do %>
+              <i class="fas fa-trash"></i>
+            <%end%>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+</div>
+</div>

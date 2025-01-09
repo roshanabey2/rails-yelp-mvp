@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Restaurants" %>
+
+<h1>Restaurants</h1>
+
+<div class="list-group" id="restaurants">
+  <% @restaurants.each do |restaurant| %>
+    <p>
+      <%= link_to "#{restaurant.name}", restaurant, class: "list-group-item list-group-item-action" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to new_restaurant_path do%>
+<button  type="button" class="btn btn-primary">
+  New Restaurant <i class="fa-solid fa-plus"></i>
+</button>
+<%end%>
